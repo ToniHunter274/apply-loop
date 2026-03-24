@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, type ReactNode } from "react";
 import { motion } from "framer-motion";
 import {
   Moon,
@@ -23,14 +23,27 @@ import {
   ChevronUp,
 } from "lucide-react";
 
-const processSteps = [
+type IconType = React.ComponentType<{ className?: string }>;
+
+type StepItem = {
+  title: string;
+  icon: IconType;
+};
+
+type FeatureItem = {
+  title: string;
+  desc: string;
+  icon: IconType;
+};
+
+const processSteps: StepItem[] = [
   { title: "AI Resume Optimization", icon: Wand2 },
   { title: "Human Specialist Review", icon: Users },
   { title: "ATS Compliance", icon: ShieldCheck },
   { title: "Final QA", icon: BadgeCheck },
 ];
 
-const ourRole = [
+const ourRole: FeatureItem[] = [
   {
     title: "Collect data on client preference",
     desc: "We gather your role, location, experience, and career goals to guide every application.",
@@ -48,7 +61,7 @@ const ourRole = [
   },
 ];
 
-const yourRole = [
+const yourRole: FeatureItem[] = [
   {
     title: "Receive notifications",
     desc: "Stay updated with alerts on applications, responses, and interview requests.",
@@ -66,12 +79,32 @@ const yourRole = [
   },
 ];
 
-const companyLogos = ["Deloitte.", "Interswitch", "Meta", "ORACLE", "TESLA", "Google"];
+const companyLogos: string[] = [
+  "Deloitte.",
+  "Interswitch",
+  "Meta",
+  "ORACLE",
+  "TESLA",
+  "Google",
+];
 
-const navLinks = ["Services", "Testimonials", "FAQs", "Careers"];
-const footerLinks = ["Home", "Services", "Testimonials", "FAQs", "Join us", "Become a client"];
+const navLinks: string[] = ["Services", "Testimonials", "FAQs", "Careers"];
+const footerLinks: string[] = [
+  "Home",
+  "Services",
+  "Testimonials",
+  "FAQs",
+  "Join us",
+  "Become a client",
+];
 
-function SectionReveal({ children, delay = 0 }) {
+function SectionReveal({
+  children,
+  delay = 0,
+}: {
+  children: ReactNode;
+  delay?: number;
+}) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 28 }}
@@ -84,7 +117,7 @@ function SectionReveal({ children, delay = 0 }) {
   );
 }
 
-function GridGlow({ dark }) {
+function GridGlow({ dark }: { dark: boolean }) {
   return (
     <div
       className="absolute inset-0 pointer-events-none"
@@ -93,13 +126,20 @@ function GridGlow({ dark }) {
           ? "linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px)"
           : "linear-gradient(to right, rgba(17,24,39,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(17,24,39,0.04) 1px, transparent 1px)",
         backgroundSize: "64px 64px",
-        maskImage: "radial-gradient(circle at center, black 55%, transparent 100%)",
+        maskImage:
+          "radial-gradient(circle at center, black 55%, transparent 100%)",
       }}
     />
   );
 }
 
-function Pill({ children, dark }) {
+function Pill({
+  children,
+  dark,
+}: {
+  children: ReactNode;
+  dark: boolean;
+}) {
   return (
     <div
       className={[
@@ -109,17 +149,26 @@ function Pill({ children, dark }) {
           : "border-blue-200 bg-blue-50 text-blue-700",
       ].join(" ")}
     >
-      <span className={[
-        "h-2 w-2 rounded-full",
-        dark ? "bg-blue-400" : "bg-blue-600",
-      ].join(" ")} />
+      <span
+        className={[
+          "h-2 w-2 rounded-full",
+          dark ? "bg-blue-400" : "bg-blue-600",
+        ].join(" ")}
+      />
       {children}
     </div>
   );
 }
 
-function FeatureCard({ item, dark }) {
+function FeatureCard({
+  item,
+  dark,
+}: {
+  item: FeatureItem;
+  dark: boolean;
+}) {
   const Icon = item.icon;
+
   return (
     <div className="text-left">
       <div
@@ -132,16 +181,20 @@ function FeatureCard({ item, dark }) {
       >
         <Icon className="h-4 w-4" />
       </div>
-      <h3 className={[
-        "mb-2 text-xl font-medium leading-tight",
-        dark ? "text-white" : "text-slate-900",
-      ].join(" ")}>
+      <h3
+        className={[
+          "mb-2 text-xl font-medium leading-tight",
+          dark ? "text-white" : "text-slate-900",
+        ].join(" ")}
+      >
         {item.title}
       </h3>
-      <p className={[
-        "max-w-xs text-sm leading-7",
-        dark ? "text-white/65" : "text-slate-600",
-      ].join(" ")}>
+      <p
+        className={[
+          "max-w-xs text-sm leading-7",
+          dark ? "text-white/65" : "text-slate-600",
+        ].join(" ")}
+      >
         {item.desc}
       </p>
     </div>
@@ -153,9 +206,7 @@ export default function ApplyLoopLandingPage() {
 
   const theme = useMemo(
     () => ({
-      page: dark
-        ? "bg-[#071226] text-white"
-        : "bg-[#f3f4f6] text-slate-900",
+      page: dark ? "bg-[#071226] text-white" : "bg-[#f3f4f6] text-slate-900",
       panel: dark
         ? "bg-[radial-gradient(circle_at_top,_rgba(40,94,255,0.18),_transparent_32%),linear-gradient(180deg,#06101f_0%,#081529_55%,#071226_100%)]"
         : "bg-[linear-gradient(180deg,#f8f9fb_0%,#f3f4f6_100%)]",
@@ -179,16 +230,23 @@ export default function ApplyLoopLandingPage() {
   );
 
   return (
-    <div className={["min-h-screen w-full transition-colors duration-500", theme.page].join(" ")}>
+    <div
+      className={[
+        "min-h-screen w-full transition-colors duration-500",
+        theme.page,
+      ].join(" ")}
+    >
       <div className={["relative overflow-hidden", theme.panel].join(" ")}>
         <GridGlow dark={dark} />
 
-        <header className={[
-          "sticky top-0 z-50 backdrop-blur-xl",
-          dark ? "bg-[#071226]/65" : "bg-white/70",
-          "border-b",
-          theme.line,
-        ].join(" ")}>
+        <header
+          className={[
+            "sticky top-0 z-50 backdrop-blur-xl",
+            dark ? "bg-[#071226]/65" : "bg-white/70",
+            "border-b",
+            theme.line,
+          ].join(" ")}
+        >
           <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-10">
             <div className="text-sm font-medium tracking-tight">Applyloop</div>
 
@@ -197,7 +255,10 @@ export default function ApplyLoopLandingPage() {
                 <a
                   key={link}
                   href="#"
-                  className={["text-sm transition-opacity hover:opacity-70", theme.muted].join(" ")}
+                  className={[
+                    "text-sm transition-opacity hover:opacity-70",
+                    theme.muted,
+                  ].join(" ")}
                 >
                   {link}
                 </a>
@@ -221,7 +282,11 @@ export default function ApplyLoopLandingPage() {
                   theme.card,
                 ].join(" ")}
               >
-                {dark ? <Sun className="h-4 w-4 text-white/85" /> : <Moon className="h-4 w-4 text-blue-700" />}
+                {dark ? (
+                  <Sun className="h-4 w-4 text-white/85" />
+                ) : (
+                  <Moon className="h-4 w-4 text-blue-700" />
+                )}
               </button>
             </div>
           </div>
@@ -243,9 +308,15 @@ export default function ApplyLoopLandingPage() {
                 >
                   More time living.
                 </div>
-                <p className={["mx-auto mt-8 max-w-2xl text-base leading-8 sm:text-lg", theme.muted].join(" ")}>
-                  We use AI + human experts to apply to jobs for you, optimize every
-                  application for ATS screening, and shape each submission around your goals.
+                <p
+                  className={[
+                    "mx-auto mt-8 max-w-2xl text-base leading-8 sm:text-lg",
+                    theme.muted,
+                  ].join(" ")}
+                >
+                  We use AI + human experts to apply to jobs for you, optimize
+                  every application for ATS screening, and shape each submission
+                  around your goals.
                 </p>
                 <div className="mt-10 flex items-center justify-center gap-4">
                   <button
@@ -282,7 +353,9 @@ export default function ApplyLoopLandingPage() {
                         <div
                           className={[
                             "flex h-10 w-10 shrink-0 items-center justify-center rounded-xl",
-                            dark ? "bg-blue-500/15 text-blue-300" : "bg-blue-50 text-blue-700",
+                            dark
+                              ? "bg-blue-500/15 text-blue-300"
+                              : "bg-blue-50 text-blue-700",
                           ].join(" ")}
                         >
                           <Icon className="h-4 w-4" />
@@ -296,11 +369,13 @@ export default function ApplyLoopLandingPage() {
             </SectionReveal>
           </section>
 
-          <section className={[
-            "border-y",
-            theme.line,
-            dark ? "bg-[#0a1730]/80" : "bg-white/60",
-          ].join(" ")}>
+          <section
+            className={[
+              "border-y",
+              theme.line,
+              dark ? "bg-[#0a1730]/80" : "bg-white/60",
+            ].join(" ")}
+          >
             <div className="mx-auto max-w-7xl px-6 py-10 lg:px-10 lg:py-14">
               <SectionReveal>
                 <p className={["text-center text-sm", theme.muted].join(" ")}>
@@ -342,36 +417,34 @@ export default function ApplyLoopLandingPage() {
                 <h2 className="mt-8 max-w-xl text-4xl font-semibold tracking-tight sm:text-5xl">
                   Job applications are exhausting. We fixed that.
                 </h2>
-                <p className={["mt-8 max-w-xl text-base leading-8", theme.muted].join(" ")}>
-                  Job searching can be time consuming, repetitive and often overwhelming.
-                  Apply Loop reduces the burden of the application process, so you can focus
-                  on career growth and getting the right visibility in your field.
+                <p
+                  className={[
+                    "mt-8 max-w-xl text-base leading-8",
+                    theme.muted,
+                  ].join(" ")}
+                >
+                  Job searching can be time consuming, repetitive and often
+                  overwhelming. Apply Loop reduces the burden of the application
+                  process, so you can focus on career growth and getting the
+                  right visibility in your field.
                 </p>
               </SectionReveal>
 
               <SectionReveal delay={0.08}>
                 <div className="relative mx-auto h-[360px] w-full max-w-[520px]">
-                  <div
-                    className={[
-                      "absolute right-20 top-8 rounded-2xl px-5 py-4 shadow-xl",
-                      dark ? "bg-amber-300 text-slate-900" : "bg-amber-300 text-slate-900",
-                    ].join(" ")}
-                  >
+                  <div className="absolute right-20 top-8 rounded-2xl bg-amber-300 px-5 py-4 text-slate-900 shadow-xl">
                     <div className="mb-2 h-1.5 w-20 rounded-full bg-white/90" />
                     <div className="h-1.5 w-28 rounded-full bg-white/70" />
                   </div>
-                  <div
-                    className={[
-                      "absolute left-12 top-24 rounded-2xl px-5 py-4 shadow-xl",
-                      dark ? "bg-sky-400 text-white" : "bg-sky-400 text-white",
-                    ].join(" ")}
-                  >
+
+                  <div className="absolute left-12 top-24 rounded-2xl bg-sky-400 px-5 py-4 text-white shadow-xl">
                     <div className="flex items-center gap-2">
                       <Users className="h-4 w-4" />
                       <div className="h-1.5 w-24 rounded-full bg-white/90" />
                     </div>
                     <div className="mt-2 h-1.5 w-20 rounded-full bg-white/65" />
                   </div>
+
                   <div className="absolute right-8 top-36 flex items-center gap-2 rounded-full bg-pink-400 px-4 py-2 text-white shadow-xl">
                     <div className="h-2 w-2 rounded-full bg-white/90" />
                     <div className="h-1.5 w-20 rounded-full bg-white/80" />
@@ -391,20 +464,24 @@ export default function ApplyLoopLandingPage() {
             </div>
           </section>
 
-          <section className={["relative overflow-hidden", theme.sectionBlue].join(" ")}>
+          <section
+            className={["relative overflow-hidden", theme.sectionBlue].join(" ")}
+          >
             <GridGlow dark={dark} />
             <div className="relative mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
               <SectionReveal>
                 <div className="text-center">
                   <Pill dark={dark}>How Apply Loop Works</Pill>
-                  <h2 className="mt-8 text-4xl font-medium tracking-tight sm:text-5xl">Our role</h2>
+                  <h2 className="mt-8 text-4xl font-medium tracking-tight sm:text-5xl">
+                    Our role
+                  </h2>
                 </div>
               </SectionReveal>
 
               <div className="mt-16 grid gap-12 md:grid-cols-2 lg:grid-cols-3">
                 {ourRole.map((item, index) => (
                   <SectionReveal key={item.title} delay={index * 0.07}>
-                    <FeatureCard item={item} dark={dark || !dark} />
+                    <FeatureCard item={item} dark={true} />
                   </SectionReveal>
                 ))}
               </div>
@@ -420,7 +497,7 @@ export default function ApplyLoopLandingPage() {
               <div className="mt-14 grid gap-12 md:grid-cols-2 lg:grid-cols-3">
                 {yourRole.map((item, index) => (
                   <SectionReveal key={item.title} delay={index * 0.07}>
-                    <FeatureCard item={item} dark={dark || !dark} />
+                    <FeatureCard item={item} dark={true} />
                   </SectionReveal>
                 ))}
               </div>
@@ -431,13 +508,23 @@ export default function ApplyLoopLandingPage() {
             <div className="grid items-start gap-14 lg:grid-cols-[1.05fr_1fr] lg:gap-20">
               <SectionReveal>
                 <h2 className="text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">
-                  <span className={dark ? "text-white/90" : "text-slate-700"}>Optimized for ATS.</span>
+                  <span className={dark ? "text-white/90" : "text-slate-700"}>
+                    Optimized for ATS.
+                  </span>
                   <br />
-                  <span className={dark ? "text-blue-400" : "text-blue-600"}>Reviewed by humans.</span>
+                  <span className={dark ? "text-blue-400" : "text-blue-600"}>
+                    Reviewed by humans.
+                  </span>
                 </h2>
-                <p className={["mt-8 max-w-xl text-base leading-8", theme.muted].join(" ")}>
-                  We do not just spam job boards. Applyloop uses a hybrid model to make every
-                  application technologically optimized and contextually precise.
+                <p
+                  className={[
+                    "mt-8 max-w-xl text-base leading-8",
+                    theme.muted,
+                  ].join(" ")}
+                >
+                  We do not just spam job boards. Applyloop uses a hybrid model
+                  to make every application technologically optimized and
+                  contextually precise.
                 </p>
 
                 <div className="mt-10 space-y-6">
@@ -467,8 +554,15 @@ export default function ApplyLoopLandingPage() {
                           <Icon className="h-4 w-4" />
                         </div>
                         <div>
-                          <div className="text-lg font-medium">{feature.title}</div>
-                          <div className={["mt-1 max-w-xl text-sm leading-7", theme.muted].join(" ")}>
+                          <div className="text-lg font-medium">
+                            {feature.title}
+                          </div>
+                          <div
+                            className={[
+                              "mt-1 max-w-xl text-sm leading-7",
+                              theme.muted,
+                            ].join(" ")}
+                          >
                             {feature.desc}
                           </div>
                         </div>
@@ -482,11 +576,15 @@ export default function ApplyLoopLandingPage() {
                 <div
                   className={[
                     "rounded-[28px] border p-5 shadow-[0_30px_80px_-25px_rgba(59,130,246,0.4)] sm:p-6",
-                    dark ? "border-white/10 bg-white/[0.04]" : "border-slate-200 bg-white/90",
+                    dark
+                      ? "border-white/10 bg-white/[0.04]"
+                      : "border-slate-200 bg-white/90",
                   ].join(" ")}
                 >
                   <div className="flex items-center justify-between gap-4">
-                    <div className="text-lg font-medium">Application Pipeline</div>
+                    <div className="text-lg font-medium">
+                      Application Pipeline
+                    </div>
                     <div className="rounded-full bg-emerald-100 px-4 py-2 text-sm font-medium text-emerald-700">
                       98% ATS Pass Rate
                     </div>
@@ -498,7 +596,9 @@ export default function ApplyLoopLandingPage() {
                         role: "Product Manager at Stripe",
                         status: "AI Parsing...",
                         icon: FileSearch,
-                        tone: dark ? "bg-blue-100 text-blue-700" : "bg-blue-50 text-blue-700",
+                        tone: dark
+                          ? "bg-blue-100 text-blue-700"
+                          : "bg-blue-50 text-blue-700",
                       },
                       {
                         role: "UX Designer at Linear",
@@ -519,16 +619,32 @@ export default function ApplyLoopLandingPage() {
                           key={row.role}
                           className={[
                             "flex items-center justify-between gap-4 rounded-2xl border px-4 py-4",
-                            dark ? "border-white/10 bg-white/[0.03]" : "border-slate-200 bg-white",
+                            dark
+                              ? "border-white/10 bg-white/[0.03]"
+                              : "border-slate-200 bg-white",
                           ].join(" ")}
                         >
                           <div className="flex min-w-0 items-center gap-3">
-                            <div className={["flex h-9 w-9 items-center justify-center rounded-xl", row.tone].join(" ")}>
+                            <div
+                              className={[
+                                "flex h-9 w-9 items-center justify-center rounded-xl",
+                                row.tone,
+                              ].join(" ")}
+                            >
                               <Icon className="h-4 w-4" />
                             </div>
-                            <div className="truncate text-sm font-medium sm:text-base">{row.role}</div>
+                            <div className="truncate text-sm font-medium sm:text-base">
+                              {row.role}
+                            </div>
                           </div>
-                          <div className={["shrink-0 text-xs sm:text-sm", theme.muted].join(" ")}>{row.status}</div>
+                          <div
+                            className={[
+                              "shrink-0 text-xs sm:text-sm",
+                              theme.muted,
+                            ].join(" ")}
+                          >
+                            {row.status}
+                          </div>
                         </div>
                       );
                     })}
@@ -540,12 +656,14 @@ export default function ApplyLoopLandingPage() {
 
           <section className="mx-auto max-w-7xl px-6 pb-16 lg:px-10 lg:pb-20">
             <SectionReveal>
-              <div className={[
-                "relative overflow-hidden rounded-[34px] border px-8 py-12 sm:px-12 sm:py-14",
-                dark
-                  ? "border-white/10 bg-[linear-gradient(180deg,rgba(73,98,180,0.55),rgba(57,82,160,0.62))]"
-                  : "border-blue-200 bg-[#2e56c6] text-white",
-              ].join(" ")}>
+              <div
+                className={[
+                  "relative overflow-hidden rounded-[34px] border px-8 py-12 sm:px-12 sm:py-14",
+                  dark
+                    ? "border-white/10 bg-[linear-gradient(180deg,rgba(73,98,180,0.55),rgba(57,82,160,0.62))]"
+                    : "border-blue-200 bg-[#2e56c6] text-white",
+                ].join(" ")}
+              >
                 <GridGlow dark={false} />
 
                 <div className="absolute left-[18%] top-[18%] flex h-14 w-14 rotate-12 items-center justify-center rounded-2xl bg-blue-900/60 text-white shadow-2xl backdrop-blur">
@@ -562,7 +680,9 @@ export default function ApplyLoopLandingPage() {
                 </div>
 
                 <div className="relative mx-auto max-w-3xl text-center">
-                  <div className="text-sm font-medium text-white/85">Apply Loop</div>
+                  <div className="text-sm font-medium text-white/85">
+                    Apply Loop
+                  </div>
                   <h2 className="mt-4 text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">
                     Ready to transform your Job search?
                   </h2>
@@ -581,14 +701,24 @@ export default function ApplyLoopLandingPage() {
         </main>
       </div>
 
-      <footer className={["relative overflow-hidden border-t", theme.line, theme.footer].join(" ")}>
-        <GridGlow dark={dark || !dark} />
+      <footer
+        className={[
+          "relative overflow-hidden border-t",
+          theme.line,
+          theme.footer,
+        ].join(" ")}
+      >
+        <GridGlow dark={true} />
         <div className="relative mx-auto max-w-7xl px-6 py-16 lg:px-10 lg:py-20">
           <div className="grid gap-12 lg:grid-cols-2">
             <div className="text-sm font-medium text-white/90">Apply Loop</div>
             <div className="grid grid-cols-2 gap-4 sm:max-w-sm sm:justify-self-end">
               {footerLinks.map((link) => (
-                <a key={link} href="#" className="text-sm text-white/75 transition hover:text-white">
+                <a
+                  key={link}
+                  href="#"
+                  className="text-sm text-white/75 transition hover:text-white"
+                >
                   {link}
                 </a>
               ))}
