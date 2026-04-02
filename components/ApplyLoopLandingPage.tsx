@@ -336,7 +336,7 @@ function LoadingStepsCard({ dark }: { dark: boolean }) {
                 <div className={["flex h-9 w-9 items-center justify-center rounded-xl", step.tone].join(" ")}>
                   <Icon className="h-4 w-4" />
                 </div>
-                <div className="text-sm font-medium text-white">{step.title}</div>
+                <div className={["text-sm font-medium", dark ? "text-white" : "text-slate-900"].join(" ")}>{step.title}</div>
                 <motion.div
                   className="ml-auto h-2.5 w-2.5 rounded-full bg-blue-400"
                   animate={{ opacity: [0.35, 1, 0.35], scale: [0.95, 1.15, 0.95] }}
