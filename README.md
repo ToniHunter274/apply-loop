@@ -78,5 +78,3 @@ Full-Stack Developer focused on building responsive web products with React, Nex
 
 - GitHub: https://github.com/ToniHunter274
 - LinkedIn: https://www.linkedin.com/in/oluwatooni-odetola/
-GitHub: https://github.com/ToniHunter274
-LinkedIn: https://www.linkedin.com/in/oluwatooni-odetola/
