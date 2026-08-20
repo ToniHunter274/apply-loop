@@ -39,20 +39,44 @@ The website focuses on usability, responsive design, performance, and modern fro
 - Deployed and maintained the project on Vercel
 
 ## Running the Project Locally
+
 Clone the repository:
+
 ```bash
 git clone https://github.com/ToniHunter274/apply-loop.git
+```
 
+Navigate into the project:
+
+```bash
 cd apply-loop
+```
+
+Install dependencies:
+
+```bash
 npm install
+```
+
+Start the development server:
+
+```bash
 npm run dev
+```
+
+Then open:
+
+```text
 http://localhost:3000
+```
 
-Author
+## Author
 
-Odetola Oluwatoni
+**Odetola Oluwatoni**
 
 Full-Stack Developer focused on building responsive web products with React, Next.js, TypeScript, and Node.js.
 
+- GitHub: https://github.com/ToniHunter274
+- LinkedIn: https://www.linkedin.com/in/oluwatooni-odetola/
 GitHub: https://github.com/ToniHunter274
 LinkedIn: https://www.linkedin.com/in/oluwatooni-odetola/
