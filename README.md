@@ -2,7 +2,8 @@
 A responsive marketing website for ApplyLoop, a job application service that helps job seekers improve their application process and connect with relevant opportunities.
 
 ## Live Demo
-https://apply-loop.vercel.app
+https://apply-loop-9aas.vercel.app/
+![ApplyLoop homepage](./public/applyloop-homepage.png)
 
 ## About the Project
 This project is the public-facing website for ApplyLoop. It was built to present the product clearly, explain how the service works, and guide users toward taking action through a clean and responsive experience.
