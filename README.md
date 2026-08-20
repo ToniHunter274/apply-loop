@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ApplyLoop
+A responsive marketing website for ApplyLoop, a job application service that helps job seekers improve their application process and connect with relevant opportunities.
 
-## Getting Started
+## Live Demo
+https://apply-loop.vercel.app
 
-First, run the development server:
+## About the Project
+This project is the public-facing website for ApplyLoop. It was built to present the product clearly, explain how the service works, and guide users toward taking action through a clean and responsive experience.
+The website focuses on usability, responsive design, performance, and modern frontend development practices.
+## Features
+- Responsive desktop and mobile layouts
+- Modern landing page design
+- Mobile navigation
+- Animated interface sections
+- Clear call-to-action flows
+- FAQ section
+- Light and dark theme support
+- SEO-focused page structure
+- Social sharing metadata
+- Responsive typography and spacing
 
+## Tech Stack
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- Framer Motion
+- Lucide React
+- Vercel
+
+## What I Worked On
+- Built responsive user interfaces from product designs
+- Developed reusable React components
+- Implemented responsive behavior across desktop and mobile screens
+- Added animations and interactive interface elements
+- Improved navigation and call-to-action experiences
+- Structured the project using modern Next.js development practices
+- Implemented SEO and metadata configuration
+- Deployed and maintained the project on Vercel
+
+## Running the Project Locally
+Clone the repository:
 ```bash
+git clone https://github.com/ToniHunter274/apply-loop.git
+
+cd apply-loop
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+http://localhost:3000
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Author
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Odetola Oluwatoni
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Full-Stack Developer focused on building responsive web products with React, Next.js, TypeScript, and Node.js.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+GitHub: https://github.com/ToniHunter274
+LinkedIn: https://www.linkedin.com/in/oluwatooni-odetola/
